@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+src/App.jsx
+src/index.css
+src/main.jsx
+src/components/Header.jsx
+src/pages/About.jsx
+src/pages/Home.jsx
+src/pages/Profile.jsx
+src/pages/SignIn.jsx
+src/pages/SingUp.jsx
