@@ -24,8 +24,8 @@ function Header() {
                     <Link to='about'>
                         <li className='hidden sm:inline text-slate-300 hover:text-gray-50'>About</li>
                     </Link>
-                    <Link to='/sing-in'>
-                        <li className=' text-slate-300 hover:text-gray-50'>Sing In</li>
+                    <Link to='/sign-in'>
+                        <li className=' text-slate-300 hover:text-gray-50'>Sign In</li>
                     </Link>
                 </ul>
             </div>
