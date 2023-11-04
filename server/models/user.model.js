@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        avatar: {
+            type: String,
+            default: 'https://www.pngitem.com/pimgs/m/522-5220445_anonymous-profile-grey-person-sticker-glitch-empty-profile.png',
+        },
     },
     { timestamps: true }
 );
