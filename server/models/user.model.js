@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
         },
         avatar: {
             type: String,
-            default: 'https://www.pngitem.com/pimgs/m/522-5220445_anonymous-profile-grey-person-sticker-glitch-empty-profile.png',
+            default: 'https://images.pexels.com/photos/18972776/pexels-photo-18972776/free-photo-of-a-beach-with-people-walking-on-it-and-people-on-the-sand.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         },
     },
     { timestamps: true }
