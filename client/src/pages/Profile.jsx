@@ -2,7 +2,8 @@ import { useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
-import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess } from '../redux/user/userSlice';
+// eslint-disable-next-line no-unused-vars
+import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, singOutUserStart, singOutUserFailure, singOutUserSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 
 function Profile() {
@@ -93,6 +94,21 @@ function Profile() {
             dispatch(deleteUserFailure(error.message));
         }
     };
+
+    const handleSignOut = async () => {
+        try {
+            dispatch(singOutUserStart());
+            const res = await fetch('/server/auth/signout');
+            const data = await res.json();
+            if (data.success === false) {
+                dispatch(deleteUserFailure(data.message));
+                return;
+            }
+            dispatch(deleteUserSuccess(data));
+        } catch (error) {
+            dispatch(deleteUserFailure(error.message));
+        }
+    };
     return (
         <div className='p-3 max-w-lg mx-auto'>
             <h1 className='text3xl font-semibold text-center my-7'>Profile</h1>
@@ -121,7 +137,9 @@ function Profile() {
                 <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>
                     Delete Account
                 </span>
-                <span className='text-red-700 cursor-pointer'>Sign Out</span>
+                <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
+                    Sign Out
+                </span>
             </div>
             <p className='text-red-700 mt-5'>{error ? error : ''}</p>
             <p className='text-green-700 mt-5'>{updateSucess ? 'User updated successfully' : ''}</p>
