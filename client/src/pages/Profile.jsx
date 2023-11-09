@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
+import { Link } from 'react-router-dom';
 // eslint-disable-next-line no-unused-vars
 import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, singOutUserStart, singOutUserFailure, singOutUserSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
@@ -132,6 +133,9 @@ function Profile() {
                 <button disabled={loading} className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-90 disabled:opacity-80'>
                     {loading ? 'Loading...' : 'update'}
                 </button>
+                <Link className='bg-green-700 text-white rounded-lg p-3 uppercase text-center hover:opacity-90' to={'/create-listing'}>
+                    Create Listing
+                </Link>
             </form>
             <div className='flex justify-between mt-6'>
                 <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>
