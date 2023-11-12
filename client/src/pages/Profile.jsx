@@ -127,12 +127,29 @@ function Profile() {
             setShowListingsError(true);
         }
     };
+
+    const handleListingDelete = async (listingid) => {
+        try {
+            const res = await fetch(`/server/listing/delete/${listingid}`, {
+                method: 'DELETE',
+            });
+            const data = await res.json();
+            if (data.success === false) {
+                console.log(data.message);
+                return;
+            }
+            setUserListings((prev) => prev.filter((listing) => listing._id !== listingid));
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
     return (
         <div className='p-3 max-w-lg mx-auto'>
             <h1 className='text3xl font-semibold text-center my-7'>Profile</h1>
             <form onSubmit={handleSubmit} className='flex flex-col gap-6 '>
                 <input onChange={(e) => setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*' />
                 <img onClick={() => fileRef.current.click()} src={formData.avatar || currentUser.avatar} alt='profile' className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2' />
+
                 <p className='text-sm self-center'>
                     {fileUploadError ? (
                         <span className='text-red-700'>Error Image upload(image must be less than 2 mb)</span>
@@ -174,7 +191,7 @@ function Profile() {
             {userListings &&
                 userListings.length > 0 &&
                 userListings.map((listing) => (
-                    <div key={listing._id} className='border rounded-lg p-3 flex justify-between items-center  bg-slate-200 my-3  gap-6'>
+                    <div key={listing._id} className='border rounded-lg p-3 flex justify-between items-center uppercase  bg-slate-200 my-3  gap-6'>
                         <Link to={`/listing/${listing._id}`}>
                             <img src={listing.imageUrls[0]} alt='listing cover' className='h-24 w-40 object-contain rounded-sm' />
                         </Link>
@@ -182,7 +199,9 @@ function Profile() {
                             <p>{listing.name}</p>
                         </Link>
                         <div className='flex flex-col gap-4'>
-                            <button className='p-2 text-sm text-white bg-slate-800 rounded-lg uppercase hover:opacity-90 hover:text-red-700'>DELETE</button>
+                            <button onClick={() => handleListingDelete(listing._id)} className='p-2 text-sm text-white bg-slate-800 rounded-lg uppercase hover:opacity-90 hover:text-red-700'>
+                                DELETE
+                            </button>
                             <button className='p-2 text-sm text-white bg-slate-800 rounded-lg uppercase hover:opacity-90 hover:text-red-700'>EDIT</button>
                         </div>
                     </div>
