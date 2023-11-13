@@ -40,6 +40,7 @@ function UpdateListing() {
             setFormData(data);
         };
         fetchListing();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleImageSubmit = () => {
