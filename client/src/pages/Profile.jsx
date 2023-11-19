@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector } from 'react-redux';
+
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
 import { Link } from 'react-router-dom';
@@ -117,7 +118,9 @@ function Profile() {
         try {
             setShowListingsError(false);
             const res = await fetch(`/server/user/listings/${currentUser._id}`);
+
             const data = await res.json();
+
             if (data.success === false) {
                 setShowListingsError(true);
                 return;
@@ -128,9 +131,9 @@ function Profile() {
         }
     };
 
-    const handleListingDelete = async (listingid) => {
+    const handleListingDelete = async (listingId) => {
         try {
-            const res = await fetch(`/server/listing/delete/${listingid}`, {
+            const res = await fetch(`/server/listing/delete/${listingId}`, {
                 method: 'DELETE',
             });
             const data = await res.json();
@@ -138,7 +141,7 @@ function Profile() {
                 console.log(data.message);
                 return;
             }
-            setUserListings((prev) => prev.filter((listing) => listing._id !== listingid));
+            setUserListings((prev) => prev.filter((listing) => listing._id !== listingId));
         } catch (error) {
             console.log(error.message);
         }
@@ -200,7 +203,7 @@ function Profile() {
                         </Link>
                         <div className='flex flex-col gap-4'>
                             <button onClick={() => handleListingDelete(listing._id)} className='p-2 text-sm text-white bg-slate-800 rounded-lg uppercase hover:opacity-90 hover:text-red-700'>
-                                DELETE
+                                Delete
                             </button>
                             <Link to={`/update-listing/${listing._id}`}>
                                 <button className='p-2 text-sm text-white bg-slate-800 rounded-lg uppercase hover:opacity-90 hover:text-red-700'>EDIT</button>
