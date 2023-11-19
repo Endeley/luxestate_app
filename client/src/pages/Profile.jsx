@@ -184,13 +184,11 @@ function Profile() {
             </div>
             <p className='text-red-700 mt-5'>{error ? error : ''}</p>
             <p className='text-green-700 mt-5'>{updateSucess ? 'User updated successfully' : ''}</p>
-            <button onClick={handleShowListings} className='text-slate-800 w-full uppercase bg-slate-200 rounded-lg'>
-                ..... Show Listings .....
+            <button onClick={handleShowListings} className='text-slate-800 w-full text-lg uppercase bg-slate-400 rounded-lg'>
+                ..... Your Listings .....
             </button>
             <p className='text-red-700 mt-5'>{showListingsError ? 'Error show listings' : ''}</p>
-            <div className='text-center font-semibold uppercase'>
-                <h1>Your Listings</h1>
-            </div>
+
             {userListings &&
                 userListings.length > 0 &&
                 userListings.map((listing) => (

@@ -150,9 +150,9 @@ function CreateListing() {
                     <input type='text' className='border p-3 rounded-lg' id='name' placeholder='name' maxLength='62' minLength='6' required onChange={handleChange} value={formData.name} />
                     <textarea type='text' className='border p-3 rounded-lg' id='description' placeholder='description' required onChange={handleChange} value={formData.description} />
                     <input type='text' className='border p-3 rounded-lg' id='address' placeholder='address' required onChange={handleChange} value={formData.address} />
-                    <input type='tel' className='border p-3 rounded-lg' id='mobileContact' placeholder='Mobile Contact' onChange={handleChange} value={formData.mobileContact} />
+                    {/* <input type='tel' className='border p-3 rounded-lg' id='mobileContact' placeholder='Mobile Contact' onChange={handleChange} value={formData.mobileContact} />
 
-                    <input type='tel' className='border p-3 rounded-lg' id='telContact' placeholder='Telephone Contact' onChange={handleChange} value={formData.telContact} />
+                    <input type='tel' className='border p-3 rounded-lg' id='telContact' placeholder='Telephone Contact' onChange={handleChange} value={formData.telContact} /> */}
 
                     {/* Add a checkbox for the user to decide whether to display contacts */}
                     <label>
